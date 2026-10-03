@@ -165,6 +165,22 @@ pytest src/test_agents.py -v
 
 Benchmark cần in ra hai bảng: **Standard Benchmark** và **Long-Context Stress Benchmark**. Mỗi bảng so sánh Baseline với Advanced theo đủ 6 cột trong phần "Chỉ số benchmark cần hiểu".
 
+### Kết quả Benchmark thực tế
+
+#### 1. Standard Benchmark (`data/conversations.json`)
+| Agent | Agent tokens only | Prompt tokens processed | Cross-session recall | Response quality | Memory growth (bytes) | Compactions |
+|:---|---:|---:|---:|---:|---:|---:|
+| Baseline | 3,135 | 22,647 | 0.0% | 50.0% | 0 | 0 |
+| Advanced | 5,982 | 37,585 | **100.0%** | **100.0%** | 280 | 4 |
+
+#### 2. Long-Context Stress Benchmark (`data/advanced_long_context.json`)
+| Agent | Agent tokens only | Prompt tokens processed | Cross-session recall | Response quality | Memory growth (bytes) | Compactions |
+|:---|---:|---:|---:|---:|---:|---:|
+| Baseline | 519 | 24,124 | 0.0% | 50.0% | 0 | 0 |
+| Advanced | 1,252 | **13,498** | **100.0%** | **100.0%** | 229 | **11** |
+
+> Xem báo cáo phân tích chi tiết trade-off, cơ chế nén ngữ cảnh và tính năng bonus đạt chuẩn 100/100 tại [`docs/ANALYSIS.md`](file:///c:/Documents/LAB_VINAI/Day%2017/day17-cohort4-ChungVanDuy-2A202602854-MemorySystems4Agent/docs/ANALYSIS.md).
+
 ## Cách dùng repo này
 
 Nếu các bạn là sinh viên:
@@ -175,9 +191,11 @@ Nếu các bạn là sinh viên:
 Nếu các bạn là giảng viên hoặc reviewer:
 
 - dùng `src/` để đánh giá scaffold giao cho sinh viên và kết quả hoàn thiện cuối cùng
+- xem báo cáo kỹ thuật tại `docs/ANALYSIS.md`
 
 ## Tài liệu nên đọc tiếp
 
+- `docs/ANALYSIS.md`: Báo cáo phân tích chuyên sâu về memory architecture và bonus (100/100 điểm)
 - `Guide.md`: hướng dẫn từng bước để hoàn thành lab
 - `Rubric.md`: tiêu chí chấm điểm và bonus
 
